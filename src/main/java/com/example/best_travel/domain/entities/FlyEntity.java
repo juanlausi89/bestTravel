@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Set;
 
-import com.example.best_travel.util.Aeroline;
+import com.example.best_travel.util.AeroLine;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -45,7 +45,7 @@ public class FlyEntity implements Serializable {
     private String destinyName;
     
     @Enumerated(EnumType.STRING)
-    private Aeroline aeroline;
+    private AeroLine aeroLine;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude

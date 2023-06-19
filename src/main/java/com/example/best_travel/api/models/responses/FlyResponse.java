@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import com.example.best_travel.util.Aeroline;
+import com.example.best_travel.util.AeroLine;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,6 +24,6 @@ public class FlyResponse implements Serializable {
     private String originName;
     private String destinyName;
     private BigDecimal price;
-    private Aeroline aeroLine;
+    private AeroLine aeroLine;
     
 }
