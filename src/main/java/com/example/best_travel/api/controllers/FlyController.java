@@ -1,6 +1,8 @@
 package com.example.best_travel.api.controllers;
 
+import java.math.BigDecimal;
 import java.util.Objects;
+import java.util.Set;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +37,29 @@ public class FlyController {
 
         var response = this.flyService.realAll(page, size, sortType);
 
+        return response.isEmpty()?ResponseEntity.noContent().build():ResponseEntity.ok(response);
+    }
+
+    @GetMapping(path = "less_price")
+    public ResponseEntity<Set<FlyResponse>> getLessPrice(
+            @RequestParam BigDecimal price){
+        var response = this.flyService.readLessPrice(price);
+        return response.isEmpty()?ResponseEntity.noContent().build():ResponseEntity.ok(response);
+    }
+
+    @GetMapping(path = "between_price")
+    public ResponseEntity<Set<FlyResponse>> getBetweenPrice(
+            @RequestParam BigDecimal min,
+            @RequestParam BigDecimal max){
+        var response = this.flyService.readBetweenPrices(min, max);
+        return response.isEmpty()?ResponseEntity.noContent().build():ResponseEntity.ok(response);
+    }
+
+    @GetMapping(path = "origin_destiny")
+    public ResponseEntity<Set<FlyResponse>> getByOriginDestiny(
+            @RequestParam String origin,
+            @RequestParam String destiny){
+        var response = this.flyService.readByOriginDestiny(origin,destiny);
         return response.isEmpty()?ResponseEntity.noContent().build():ResponseEntity.ok(response);
     }
     

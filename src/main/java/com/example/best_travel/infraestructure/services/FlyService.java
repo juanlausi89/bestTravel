@@ -2,6 +2,7 @@ package com.example.best_travel.infraestructure.services;
 
 import java.math.BigDecimal;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -42,20 +43,26 @@ public class FlyService implements IFlyService {
 
     @Override
     public Set<FlyResponse> readLessPrice(BigDecimal price) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'readLessPrice'");
+        return this.flyRepository.selectLessPrice(price)
+        .stream()
+        .map(this::entityToResponse)
+        .collect(Collectors.toSet());
     }
 
     @Override
     public Set<FlyResponse> readBetweenPrices(BigDecimal min, BigDecimal max) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'readBetweenPrices'");
+        return this.flyRepository.selectBetweenPrice(min,max)
+        .stream()
+        .map(this::entityToResponse)
+        .collect(Collectors.toSet());
     }
 
     @Override
     public Set<FlyResponse> readByOriginDestiny(String origin, String destiny) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'readByOriginDestiny'");
+        return this.flyRepository.selectOriginDestiny(origin,destiny)
+        .stream()
+        .map(this::entityToResponse)
+        .collect(Collectors.toSet());
     }
 
 
