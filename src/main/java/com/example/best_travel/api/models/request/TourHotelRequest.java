@@ -14,4 +14,5 @@ import lombok.NoArgsConstructor;
 public class TourHotelRequest implements Serializable {
     
     public Long id;
+    private Integer totalDays;
 }
