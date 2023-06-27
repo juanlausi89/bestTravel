@@ -17,6 +17,7 @@ import com.example.best_travel.domain.repositories.CustomerRepository;
 import com.example.best_travel.domain.repositories.HotelRepository;
 import com.example.best_travel.domain.repositories.ReservationRepository;
 import com.example.best_travel.infraestructure.abstract_services.IReservationService;
+import com.example.best_travel.infraestructure.helpers.CustomerHelper;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -31,6 +32,7 @@ public class ReservationService implements IReservationService {
     private final HotelRepository hotelRepository;
     private final CustomerRepository customerRepository;
     private final ReservationRepository reservationRepository;
+    private final CustomerHelper customerHelper;
 
     @Override
     public ReservationResponse create(ReservationRequest request) {
@@ -50,6 +52,8 @@ public class ReservationService implements IReservationService {
                 .build();
 
         var reservationPersisted = reservationRepository.save(reservationToPersist);
+
+        this.customerHelper.incrase(customer.getDni(), ReservationService.class);
         
         return entityToResponse(reservationPersisted);
     }

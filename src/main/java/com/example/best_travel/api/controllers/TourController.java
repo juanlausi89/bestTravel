@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.best_travel.api.models.request.TourRequest;
@@ -52,6 +53,21 @@ public class TourController {
     @PatchMapping(path = "{tourId}/add_ticket/{flyId}")
     public ResponseEntity<Map<String, UUID>> postTicket(@PathVariable Long tourId, @PathVariable Long flyId) {
         var response = Collections.singletonMap("ticketId", this.tourService.addTicket(tourId, flyId));
+        return ResponseEntity.ok(response);
+    }
+
+    @PatchMapping(path = "{tourId}/remove_reservation/{reservationId}")
+    public ResponseEntity<Void> deleteReservation(@PathVariable Long tourId, @PathVariable UUID reservationId) {
+        this.tourService.removeReservation(tourId, reservationId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping(path = "{tourId}/add_reservation/{hotelId}")
+    public ResponseEntity<Map<String, UUID>> postReservation(
+        @PathVariable Long tourId, 
+        @PathVariable Long hotelId,
+        @RequestParam Integer totalDays) {
+        var response = Collections.singletonMap("ticketId", this.tourService.addReservation(tourId, hotelId, totalDays));
         return ResponseEntity.ok(response);
     }
 

@@ -3,10 +3,10 @@ package com.example.best_travel.infraestructure.services;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Currency;
+
 import java.util.UUID;
 
-import org.hibernate.annotations.Tables;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +19,7 @@ import com.example.best_travel.domain.repositories.CustomerRepository;
 import com.example.best_travel.domain.repositories.FlyRepository;
 import com.example.best_travel.domain.repositories.TicketRepository;
 import com.example.best_travel.infraestructure.abstract_services.ITicketService;
+import com.example.best_travel.infraestructure.helpers.CustomerHelper;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,7 @@ public class TicketService implements ITicketService {
     private final FlyRepository flyRepository;
     private final CustomerRepository customerRepository;
     private final TicketRepository ticketRepository;
+    private final CustomerHelper customerHelper;
 
 
     @Override
@@ -50,6 +52,8 @@ public class TicketService implements ITicketService {
             .build();
 
          var ticketPersisted = this.ticketRepository.save(ticketToPersist);
+
+         this.customerHelper.incrase(customer.getDni(), TicketService.class);
         
          return this.entityToResponse(ticketPersisted);
     }

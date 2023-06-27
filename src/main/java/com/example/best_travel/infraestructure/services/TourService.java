@@ -22,6 +22,7 @@ import com.example.best_travel.domain.repositories.FlyRepository;
 import com.example.best_travel.domain.repositories.HotelRepository;
 import com.example.best_travel.domain.repositories.TourRepository;
 import com.example.best_travel.infraestructure.abstract_services.ITourService;
+import com.example.best_travel.infraestructure.helpers.CustomerHelper;
 import com.example.best_travel.infraestructure.helpers.TourHelper;
 
 import lombok.AllArgsConstructor;
@@ -36,6 +37,7 @@ public class TourService implements ITourService {
     private final HotelRepository hotelRepository;
     private final CustomerRepository customerRepository;
     private final TourHelper tourHelper;
+    private final CustomerHelper customerHelper;
     
 
     @Override
@@ -55,6 +57,8 @@ public class TourService implements ITourService {
 
         //Regresa una entidad
         var tourSaved = this.tourRepository.save(tourToSave);
+
+        this.customerHelper.incrase(customer.getDni(), TourService.class);
 
         //Tengo que mapear la entidad, al tipo TourResponse
         return TourResponse.builder()
