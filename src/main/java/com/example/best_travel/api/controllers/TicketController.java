@@ -21,12 +21,14 @@ import com.example.best_travel.api.models.request.TicketRequest;
 import com.example.best_travel.api.models.responses.TicketResponse;
 import com.example.best_travel.infraestructure.abstract_services.ITicketService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping(path = "ticket")
 @AllArgsConstructor
+@Tag(name = "Ticket")
 public class TicketController {
     
     private final ITicketService ticketService;

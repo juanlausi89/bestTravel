@@ -16,11 +16,13 @@ import com.example.best_travel.api.models.responses.FlyResponse;
 import com.example.best_travel.infraestructure.abstract_services.IFlyService;
 import com.example.best_travel.util.SortType;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping(path = "fly")
 @AllArgsConstructor
+@Tag(name = "Fly")
 public class FlyController {
 
     private final IFlyService flyService;

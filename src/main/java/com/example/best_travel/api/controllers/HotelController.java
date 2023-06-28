@@ -17,11 +17,13 @@ import com.example.best_travel.api.models.responses.HotelResponse;
 import com.example.best_travel.infraestructure.abstract_services.IHotelService;
 import com.example.best_travel.util.SortType;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping(path = "hotel")
 @AllArgsConstructor
+@Tag(name = "Hotel")
 public class HotelController {
     
     private final IHotelService hotelService;

@@ -19,21 +19,26 @@ import com.example.best_travel.api.models.request.TourRequest;
 import com.example.best_travel.api.models.responses.TourResponse;
 import com.example.best_travel.infraestructure.abstract_services.ITourService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping(path = "tour")
 @AllArgsConstructor
+@Tag(name = "Tour")
 public class TourController {
 
     private ITourService tourService;
 
+    @Operation(summary = "Guarda en el sistema un tour, basado en una lista de hoteles y una lista de vuelos")
     @PostMapping
     public ResponseEntity<TourResponse>post(@Valid @RequestBody TourRequest request){
         return ResponseEntity.ok(this.tourService.create(request));
     }
     
+    @Operation(summary = "Retorna un tour con el id que le pasamos")//Anotacion para swagger(documentar la api)
     @GetMapping(path = "{id}")
     public ResponseEntity<TourResponse>get(@PathVariable Long id){
         return ResponseEntity.ok(this.tourService.read(id));
