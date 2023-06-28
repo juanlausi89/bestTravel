@@ -26,7 +26,7 @@ public class BadRequestController {
                 .build();
     }
 
-
+    
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public BaseErrorResponse handleIdNotFound(MethodArgumentNotValidException exception) {
         var errors = new ArrayList<String>();
