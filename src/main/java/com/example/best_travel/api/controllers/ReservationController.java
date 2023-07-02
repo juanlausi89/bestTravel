@@ -7,6 +7,7 @@ import com.example.best_travel.api.models.responses.ErrorsResponse;
 import com.example.best_travel.api.models.responses.ReservationResponse;
 import com.example.best_travel.infraestructure.abstract_services.IReservationService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -16,7 +17,9 @@ import lombok.AllArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Collections;
+import java.util.Currency;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
@@ -26,6 +29,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -65,9 +69,13 @@ public class ReservationController {
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(summary = "return a reservation price given a hotel id")
     @GetMapping
-    public ResponseEntity<Map<String,BigDecimal>> getReservationPrice(@RequestParam Long reservationId){
-        return ResponseEntity.ok(Collections.singletonMap("ticketPrice",this.reservationService.findPrice(reservationId)));
+    public ResponseEntity<Map<String, BigDecimal>> getReservationPrice(
+            @RequestParam Long hotelId,
+            @RequestHeader(required = false) Currency currency) {
+        if (Objects.isNull(currency)) currency = Currency.getInstance("USD");
+        return ResponseEntity.ok(Collections.singletonMap("ticketPrice", this.reservationService.findPrice(hotelId, currency)));
     }
     
 }
