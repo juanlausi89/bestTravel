@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Currency;
+import java.util.Objects;
 import java.util.UUID;
 
 
@@ -20,6 +21,7 @@ import com.example.best_travel.domain.repositories.ReservationRepository;
 import com.example.best_travel.infraestructure.abstract_services.IReservationService;
 import com.example.best_travel.infraestructure.helpers.ApiCurrencyConnectorHelper;
 import com.example.best_travel.infraestructure.helpers.CustomerHelper;
+import com.example.best_travel.infraestructure.helpers.EmailHelper;
 import com.example.best_travel.util.Tables;
 import com.example.best_travel.util.exceptions.IdNotFoundException;
 
@@ -38,6 +40,7 @@ public class ReservationService implements IReservationService {
     private final ReservationRepository reservationRepository;
     private final CustomerHelper customerHelper;
     private final ApiCurrencyConnectorHelper currencyConnectorHelper;
+    private final EmailHelper emailHelper;
 
     @Override
     public ReservationResponse create(ReservationRequest request) {
@@ -59,6 +62,10 @@ public class ReservationService implements IReservationService {
         var reservationPersisted = reservationRepository.save(reservationToPersist);
 
         this.customerHelper.incrase(customer.getDni(), ReservationService.class);
+
+        if(Objects.nonNull(request.getEmail())){
+            this.emailHelper.sendMail(request.getEmail(),customer.getFullName(),Tables.reservation.name());
+        }
         
         return entityToResponse(reservationPersisted);
     }
