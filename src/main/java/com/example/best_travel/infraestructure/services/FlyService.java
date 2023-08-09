@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.best_travel.api.models.responses.FlyResponse;
-import com.example.best_travel.domain.entities.FlyEntity;
-import com.example.best_travel.domain.repositories.FlyRepository;
+import com.example.best_travel.domain.entities.jpa.FlyEntity;
+import com.example.best_travel.domain.repositories.jpa.FlyRepository;
 import com.example.best_travel.infraestructure.abstract_services.IFlyService;
 import com.example.best_travel.util.SortType;
 

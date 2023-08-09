@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.best_travel.api.models.responses.HotelResponse;
-import com.example.best_travel.domain.entities.HotelEntity;
-import com.example.best_travel.domain.repositories.HotelRepository;
+import com.example.best_travel.domain.entities.jpa.HotelEntity;
+import com.example.best_travel.domain.repositories.jpa.HotelRepository;
 import com.example.best_travel.infraestructure.abstract_services.IHotelService;
 import com.example.best_travel.util.SortType;
 
