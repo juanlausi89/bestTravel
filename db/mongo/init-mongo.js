@@ -15,7 +15,7 @@ db.app_users.insert([
     "username": "ragnar777", 
     "dni": "VIKI771012HMCRG093", 
     "enabled": true, 
-    "password": "s3cr3t", 
+    "password": "$2a$10$LAeI7pGUQwmEbCrZx1N82OdffdXYv6d48dbzroM09MScpXz6KjpFi", 
     "role": 
     {
         "granted_authorities": ["ROLE_USER"]
@@ -25,7 +25,7 @@ db.app_users.insert([
     "username": "heisenberg", 
     "dni": "BBMB771012HMCRR022", 
     "enabled": true, 
-    "password": "p4sw0rd", 
+    "password": "$2a$10$xXwTPyEFMC1.u9LWSKkj2uIZFvvOYr3nid5OR8llXBEjuIEBrjRra", 
     "role": 
     {
         "granted_authorities": ["ROLE_USER"]
@@ -33,7 +33,7 @@ db.app_users.insert([
 },
 { 
     "username": "misterX", 
-    "dni": "GOTW771012HMRGR087", 
+    "dni": "$2a$10$aL7qTSu0eAKCWh9Pxz8JjeXOxh94EAS1fjFHn/Z0P4Ymxm/XCphRq", 
     "enabled": true, 
     "password": "misterX123", 
     "role": 
@@ -45,7 +45,7 @@ db.app_users.insert([
     "username": "neverMore", 
     "dni": "WALA771012HCRGR054", 
     "enabled": true, 
-    "password": "4dmIn", 
+    "password": "$2a$10$KtY71v8mToOWKiJhK/qcseU1n57pmEHbB72LJnrEpDOlz.LK0cUUq", 
     "role": 
     {
         "granted_authorities": ["ROLE_ADMIN"]
