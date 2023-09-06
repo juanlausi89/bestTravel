@@ -11,44 +11,48 @@ db.createUser({
 db.createCollection('app_users', { capped: false });
 
 db.app_users.insert([
-{ 
-    "username": "ragnar777", 
-    "dni": "VIKI771012HMCRG093", 
-    "enabled": true, 
-    "password": "$2a$10$LAeI7pGUQwmEbCrZx1N82OdffdXYv6d48dbzroM09MScpXz6KjpFi", 
-    "role": 
     {
-        "granted_authorities": ["ROLE_USER"]
-    } 
-},
-{ 
-    "username": "heisenberg", 
-    "dni": "BBMB771012HMCRR022", 
-    "enabled": true, 
-    "password": "$2a$10$xXwTPyEFMC1.u9LWSKkj2uIZFvvOYr3nid5OR8llXBEjuIEBrjRra", 
-    "role": 
+        "username": "ragnar777",
+        "dni": "VIKI771012HMCRG093",
+        "enabled": true,
+        "password_not_encrypted": "s3cr3t",
+        "password": "$2a$10$P6MICmgs0K5clfkCU4NZseZYrCTKxOCkTSQgnIqkc2njUamiY4y.6",
+        "role":
+            {
+                "granted_authorities": ["read"]
+            }
+    },
     {
-        "granted_authorities": ["ROLE_USER"]
-    } 
-},
-{ 
-    "username": "misterX", 
-    "dni": "$2a$10$aL7qTSu0eAKCWh9Pxz8JjeXOxh94EAS1fjFHn/Z0P4Ymxm/XCphRq", 
-    "enabled": true, 
-    "password": "misterX123", 
-    "role": 
+        "username": "heisenberg",
+        "dni": "BBMB771012HMCRR022",
+        "enabled": true,
+        "password_not_encrypted": "p4sw0rd",
+        "password": "$2a$10$Ncjn/PedW0ewTai7DDSeQO3WhLS86aKXMh9QH08ZbVpFAc8300cIK",
+        "role":
+            {
+                "granted_authorities": ["read"]
+            }
+    },
     {
-        "granted_authorities": ["ROLE_USER", "ROLE_ADMIN"]
-    } 
-},
-{ 
-    "username": "neverMore", 
-    "dni": "WALA771012HCRGR054", 
-    "enabled": true, 
-    "password": "$2a$10$KtY71v8mToOWKiJhK/qcseU1n57pmEHbB72LJnrEpDOlz.LK0cUUq", 
-    "role": 
+        "username": "misterX",
+        "dni": "GOTW771012HMRGR087",
+        "enabled": true,
+        "password_not_encrypted": "misterX123",
+        "password": "$2a$10$OvPWDXWX5lJ141fuM1U4KuSW7ihm0UhMvCpZ5zQ/ihl6TvyjY.uje",
+        "role":
+            {
+                "granted_authorities": ["read", "write"]
+            }
+    },
     {
-        "granted_authorities": ["ROLE_ADMIN"]
-    } 
-}
+        "username": "neverMore",
+        "dni": "WALA771012HCRGR054",
+        "enabled": true,
+        "password_not_encrypted": "4dmIn",
+        "password": "$2a$10$vFC2zVHNXJ6LVhR.llCvneUq8J4XZy1hEd8lBow6m5viIO7eaAkVm",
+        "role":
+            {
+                "granted_authorities": ["write"]
+            }
+    }
 ]);
